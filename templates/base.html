@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tayga Rayanne{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-950 text-white font-sans selection:bg-blue-500/30 md:cursor-none overflow-x-hidden">
+    
+    <div class="fixed inset-0 z-[-1] overflow-hidden pointer-events-none bg-slate-950">
+        <div class="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div class="absolute bottom-[10%] right-[-5%] w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[100px] animate-pulse" style="animation-delay: 3s;"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-emerald-500/5 rounded-full blur-[150px] opacity-50"></div>
+    </div>
+
+    <div id="custom-cursor" class="fixed top-0 left-0 w-4 h-4 border border-blue-400 rounded-full pointer-events-none z-[9999] transition-transform duration-75 ease-out -translate-x-1/2 -translate-y-1/2 hidden md:block opacity-0"></div>
+
+<nav class="relative z-50 p-6 flex justify-between items-center max-w-6xl mx-auto border-b border-white/5">
+    <h1 class="text-2xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-emerald-400 bg-clip-text text-transparent">
+        Tayga.dev
+    </h1>
+
+    <div class="flex items-center gap-6 font-medium tracking-wide text-sm md:text-base">
+        <a href="/" class="text-slate-300 hover:text-blue-400 transition-colors duration-300 relative group">
+            Home
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#sobre" class="text-slate-300 hover:text-purple-400 transition-colors duration-300 relative group">
+            Sobre
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#skills" class="text-slate-300 hover:text-blue-400 transition-colors duration-300 relative group">
+            Stacks
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#projetos" class="text-slate-300 hover:text-emerald-400 transition-colors duration-300 relative group">
+            Projetos
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#certificados" class="text-slate-300 hover:text-purple-400 transition-colors duration-300 relative group">
+            Certificados
+            <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
+        </a>
+    </div>
+</nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="py-10 text-center text-slate-600 border-t border-slate-800/50 mt-20">
+        <p class="text-xs uppercase tracking-[0.2em]">&copy; 2026 - Tayga Rayanne</p>
+    </footer>
+
+    <script>
+        const cursor = document.getElementById('custom-cursor');
+        
+        // Movimentação do Cursor (para seguir o mouse e aparecer/desaparecer quando sair da janela)
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.classList.remove('opacity-0');
+        });
+
+        // Efeito de Hover (ele aumenta e muda de cor quando passa sobre links, botões e elementos com a classe 'group')
+        const interactables = document.querySelectorAll('a, button, .group');
+        interactables.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                cursor.classList.add('scale-150', 'bg-blue-400/10', 'border-blue-300');
+            });
+            item.addEventListener('mouseleave', () => {
+                cursor.classList.remove('scale-150', 'bg-blue-400/10', 'border-blue-300');
+            });
+        });
+
+        document.addEventListener('mouseleave', () => cursor.classList.add('opacity-0'));
+
+        // Gerador Dinâmico de Estrelas (para criar um fundo estrelado do meu jeitinho)
+        function createStars() {
+            const bgContainer = document.querySelector('.fixed.inset-0.z-\\[-1\\]');
+            for (let i = 0; i < 70; i++) { // Aumentei para 70 estrelas para ficar mais preenchido
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = (Math.random() * 2 + 1) + 'px';
+                star.style.width = size;
+                star.style.height = size;
+                star.style.top = Math.random() * 100 + '%';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+                bgContainer.appendChild(star);
+            }
+        }
+        createStars();
+    </script>
+</body>
+</html>
