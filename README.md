@@ -26,8 +26,8 @@ O projeto foi construído utilizando uma arquitetura moderna e otimizada para ap
 - [x] **Performance Otimizada:** Migração estratégica do Render para Vercel para eliminar latência de "cold start".
 - [x] **Design Futurista:** Interface com tema dark, efeitos neon e transparências (Glassmorphism).
 - [x] **Galeria de Certificações:** Exibição dinâmica de conquistas acadêmicas e técnicas.
-- [x] **Trajetória Profissional:** Narrativa clara da transição de carreira da Educação Física para Tech.
-- [x] **Responsividade:** Totalmente otimizado para Mobile e Desktop.
+- [x] **Trajetória Profissional:** Transição de carreira da Educação Física para Tech.
+- [x] **Responsividade:** Otimizado para Mobile e Desktop.
 
 ## 📂 Estrutura do Projeto
 
